@@ -1,0 +1,167 @@
+<codeTemplateLibrary version="3.11.0">
+  <id>71ab01b2-c9c1-418c-82d2-d512449534b6</id>
+  <name>Json Library</name>
+  <revision>2</revision>
+  <lastModified>
+    <time>1631993546514</time>
+    <timezone>Etc/UTC</timezone>
+  </lastModified>
+  <description></description>
+  <includeNewChannels>true</includeNewChannels>
+  <enabledChannelIds>
+    <string>4b589d39-1f0d-4985-900e-6dcb86fa5900</string>
+    <string>c8664033-9b7f-4d25-a298-4cab7c5219c8</string>
+    <string>86b3733a-bbcb-4e66-8019-288a694c18ca</string>
+  </enabledChannelIds>
+  <disabledChannelIds/>
+  <codeTemplates>
+    <codeTemplate version="3.11.0">
+      <id>fa72de4e-8784-45fa-ae24-c937412a21fb</id>
+      <name>Diagnosis</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1631992142437</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function Diagnosis() {
+	return {
+		&quot;id&quot;:&quot;&quot;,
+		&quot;code&quot;:&quot;&quot;,
+		&quot;description&quot;:&quot;&quot;,
+		&quot;drgType&quot;:&quot;&quot;,
+		&quot;dateTime&quot;:&quot;&quot;
+	}
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>18b12b36-b8ea-4cd9-bf3b-71605b2b8d10</id>
+      <name>Encounter</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1631992141906</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>GLOBAL_POSTPROCESSOR</contextType>
+          <contextType>CHANNEL_ATTACHMENT</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>GLOBAL_DEPLOY</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>GLOBAL_PREPROCESSOR</contextType>
+          <contextType>GLOBAL_UNDEPLOY</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>CHANNEL_UNDEPLOY</contextType>
+          <contextType>CHANNEL_PREPROCESSOR</contextType>
+          <contextType>CHANNEL_BATCH</contextType>
+          <contextType>CHANNEL_POSTPROCESSOR</contextType>
+          <contextType>CHANNEL_DEPLOY</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function encounter() {
+	return {
+	 &quot;PatientId&quot;:&quot;&quot;,
+	 &quot;ExternalPatientId&quot;:&quot;&quot;,
+	 &quot;LastName&quot;:&quot;&quot;,
+	 &quot;FirstName&quot;: &quot;&quot;,
+      &quot;EventDescription&quot;: &quot;&quot;,
+      &quot;DOB&quot;: &quot;&quot;,
+      &quot;PhoneNumber&quot;: &quot;&quot;,
+      &quot;PatientClass&quot;: &quot;&quot;,
+      &quot;SSN&quot;: &quot;&quot;,
+      &quot;InsuranceName&quot;: &quot;&quot;,
+      &quot;InsuranceType&quot;: &quot;&quot;,
+      &quot;InsurancePolicyNumber&quot;: &quot;&quot;,
+      &quot;EventType&quot;: &quot;&quot;,
+      &quot;EventDate&quot;: &quot;&quot;,
+      &quot;AdmissionDate&quot;: &quot;&quot;,
+      &quot;AdmissionType&quot;: &quot;&quot;,
+      &quot;AttendingDoctor&quot;: &quot;&quot;,
+      &quot;ReferringDoctor&quot;: &quot;&quot;,
+      &quot;ConsultingDoctor&quot;: &quot;&quot;,
+      &quot;AdmittingDoctor&quot;: &quot;&quot;,
+      &quot;PrimaryDoctor&quot;: &quot;&quot;,
+      &quot;PrimaryDoctorId&quot;: &quot;&quot;,
+      &quot;DischargeDisposition&quot;: &quot;&quot;,
+      &quot;DischargeDate&quot;: &quot;&quot;,
+      &quot;SendingFacility&quot;: &quot;&quot;,
+      &quot;ServicingFacility&quot;: &quot;&quot;,
+      &quot;EncounterID&quot;: &quot;&quot;,
+      &quot;DateProcessed&quot;: &quot;&quot;,&#xd;
+      &quot;Diagnosis&quot;:[],&#xd;
+      &quot;Procedures&quot;:[]
+	}	
+}
+
+</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>ce4cd154-657a-49ce-99ab-714905d3098a</id>
+      <name>Procedure</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1631992142503</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function Procedure() {
+	return {
+		&quot;id&quot;:&quot;&quot;,
+		&quot;code&quot;:&quot;&quot;,
+		&quot;description&quot;:&quot;&quot;,
+		&quot;dateTime&quot;:&quot;&quot;,
+		&quot;surgeon&quot;:&quot;&quot;
+	}
+}</code>
+      </properties>
+    </codeTemplate>
+  </codeTemplates>
+</codeTemplateLibrary>

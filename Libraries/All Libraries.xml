@@ -1,0 +1,709 @@
+<list>
+  <codeTemplateLibrary version="3.11.0">
+    <id>71ab01b2-c9c1-418c-82d2-d512449534b6</id>
+    <name>Json Library</name>
+    <revision>2</revision>
+    <lastModified>
+      <time>1631993546514</time>
+      <timezone>Etc/UTC</timezone>
+    </lastModified>
+    <description></description>
+    <includeNewChannels>true</includeNewChannels>
+    <enabledChannelIds>
+      <string>86b3733a-bbcb-4e66-8019-288a694c18ca</string>
+    </enabledChannelIds>
+    <disabledChannelIds/>
+    <codeTemplates>
+      <codeTemplate version="3.11.0">
+        <id>fa72de4e-8784-45fa-ae24-c937412a21fb</id>
+        <name>Diagnosis</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142437</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function Diagnosis() {
+	return {
+		&quot;id&quot;:&quot;&quot;,
+		&quot;code&quot;:&quot;&quot;,
+		&quot;description&quot;:&quot;&quot;,
+		&quot;drgType&quot;:&quot;&quot;,
+		&quot;dateTime&quot;:&quot;&quot;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>18b12b36-b8ea-4cd9-bf3b-71605b2b8d10</id>
+        <name>Encounter</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992141906</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>CHANNEL_PREPROCESSOR</contextType>
+            <contextType>CHANNEL_DEPLOY</contextType>
+            <contextType>GLOBAL_POSTPROCESSOR</contextType>
+            <contextType>CHANNEL_BATCH</contextType>
+            <contextType>GLOBAL_DEPLOY</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+            <contextType>GLOBAL_UNDEPLOY</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>CHANNEL_POSTPROCESSOR</contextType>
+            <contextType>CHANNEL_ATTACHMENT</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>CHANNEL_UNDEPLOY</contextType>
+            <contextType>GLOBAL_PREPROCESSOR</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function encounter() {
+	return {
+	 &quot;PatientId&quot;:&quot;&quot;,
+	 &quot;ExternalPatientId&quot;:&quot;&quot;,
+	 &quot;LastName&quot;:&quot;&quot;,
+	 &quot;FirstName&quot;: &quot;&quot;,
+      &quot;EventDescription&quot;: &quot;&quot;,
+      &quot;DOB&quot;: &quot;&quot;,
+      &quot;PhoneNumber&quot;: &quot;&quot;,
+      &quot;PatientClass&quot;: &quot;&quot;,
+      &quot;SSN&quot;: &quot;&quot;,
+      &quot;InsuranceName&quot;: &quot;&quot;,
+      &quot;InsuranceType&quot;: &quot;&quot;,
+      &quot;InsurancePolicyNumber&quot;: &quot;&quot;,
+      &quot;EventType&quot;: &quot;&quot;,
+      &quot;EventDate&quot;: &quot;&quot;,
+      &quot;AdmissionDate&quot;: &quot;&quot;,
+      &quot;AdmissionType&quot;: &quot;&quot;,
+      &quot;AttendingDoctor&quot;: &quot;&quot;,
+      &quot;ReferringDoctor&quot;: &quot;&quot;,
+      &quot;ConsultingDoctor&quot;: &quot;&quot;,
+      &quot;AdmittingDoctor&quot;: &quot;&quot;,
+      &quot;PrimaryDoctor&quot;: &quot;&quot;,
+      &quot;PrimaryDoctorId&quot;: &quot;&quot;,
+      &quot;DischargeDisposition&quot;: &quot;&quot;,
+      &quot;DischargeDate&quot;: &quot;&quot;,
+      &quot;SendingFacility&quot;: &quot;&quot;,
+      &quot;ServicingFacility&quot;: &quot;&quot;,
+      &quot;EncounterID&quot;: &quot;&quot;,
+      &quot;DateProcessed&quot;: &quot;&quot;,&#xd;
+      &quot;Diagnosis&quot;:[],&#xd;
+      &quot;Procedures&quot;:[]
+	}	
+}
+
+</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>ce4cd154-657a-49ce-99ab-714905d3098a</id>
+        <name>Procedure</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142503</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function Procedure() {
+	return {
+		&quot;id&quot;:&quot;&quot;,
+		&quot;code&quot;:&quot;&quot;,
+		&quot;description&quot;:&quot;&quot;,
+		&quot;dateTime&quot;:&quot;&quot;,
+		&quot;surgeon&quot;:&quot;&quot;
+	}
+}</code>
+        </properties>
+      </codeTemplate>
+    </codeTemplates>
+  </codeTemplateLibrary>
+  <codeTemplateLibrary version="3.11.0">
+    <id>46f98a65-d504-4fc8-a295-7cf7b199b3c3</id>
+    <name>SLQTools</name>
+    <revision>5</revision>
+    <lastModified>
+      <time>1631996045336</time>
+      <timezone>Etc/UTC</timezone>
+    </lastModified>
+    <description></description>
+    <includeNewChannels>true</includeNewChannels>
+    <enabledChannelIds>
+      <string>86b3733a-bbcb-4e66-8019-288a694c18ca</string>
+    </enabledChannelIds>
+    <disabledChannelIds/>
+    <codeTemplates>
+      <codeTemplate version="3.11.0">
+        <id>72385f14-0abe-4016-b02a-7c35cd14f65d</id>
+        <name>addProvider</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142221</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function addProvider() {
+
+	   var json = {};
+	   json.FullName = &quot;Joe Smith&quot;;
+	   json.ProviderId = &quot;jsmith&quot;;       
+        insertQueryBuilder(json,&quot;Providers&quot;);
+
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>88d23bbb-fca3-4b22-8faa-68458dfa27fd</id>
+        <name>checkDuplicateData</name>
+        <revision>3</revision>
+        <lastModified>
+          <time>1631996259767</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function checkDuplicateData(patientId, eventType, eventDate) {
+	var query = &quot;SELECT Id FROM Encounters WHERE PatientId=&apos;&quot; + patientId + &quot;&apos; AND EventType=&apos;&quot; + eventType + &quot;&apos; AND EventDate=&apos;&quot; + eventDate + &quot;&apos;&quot;;
+     var result = selectQueryBuilder(query);
+	if(result.length &gt; 0){
+		return false;
+	}
+	return true;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>55b03bce-55d3-445e-8dbc-c8dcd15257bc</id>
+        <name>getConnectionstring</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992141800</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getConnectionstring(server) {
+var config = JSON.parse(configurationMap.get(&quot;settings&quot;));
+var databases =config.Databases;
+var connection;
+switch(server) {
+    case &quot;default&quot;:
+        connection = databases.default;
+        break;
+    case &quot;mirth_arch&quot;:
+       connection = databases.mirth_arch;
+        break;
+    case &quot;PrimeRecord1197&quot;:
+        connection = databases.PrimeRecord1197;
+        break;
+    case &quot;wwmcdb&quot;:
+        connection = databases.wwmcdb;
+        break;
+    default:
+        connection = databases.mirth_arch;
+}
+
+return connection.connectionstring;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>e1ba74c3-81fe-4a6a-9eb0-e9083a159bad</id>
+        <name>getEventTypeDescription</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142689</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getEventTypeDescription(code) {
+	var query = &quot;SELECT Name,Code FROM EventTypeDescription WHERE Code=&apos;&quot; + code + &quot;&apos;&quot;;
+     var result = selectQueryBuilder(query);
+	return result;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>f88de46e-16ad-4a9c-8a5a-bc46ba471677</id>
+        <name>getPatient</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992141661</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getPatient(firstName,LastName,dob,ssn) {
+	var query = &quot;SELECT * FROM Person WHERE FirstName=&apos;&quot; + firstName + &quot;&apos; AND LastName=&apos;&quot; + LastName + &quot;&apos;&quot;;
+     var result = selectQueryBuilder(query);
+	return result;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>64854216-72a9-4aec-9218-b19d6889bfe0</id>
+        <name>getPatientId</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142589</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getPatientId(firstName,lastName,dob,ssn) {
+	var query = &quot;SELECT PersonID FROM Person WHERE &quot;
+	if(firstName !=&apos;&apos;){
+		query += &quot;FirstName=&apos;&quot; + firstName + &quot;&apos;&quot;
+		if(lastName !=&apos;&apos;){
+				query += &quot; AND LastName=&apos;&quot; + lastName + &quot;&apos;&quot;
+		}
+	}else{
+		if(lastName !=&apos;&apos;){
+			query += &quot; LastName=&apos;&quot; + lastName + &quot;&apos;&quot;
+		}
+	}
+	if(dob !=&apos;&apos;){
+		query += &quot; AND DateOfBirth=&apos;&quot; + dob + &quot;&apos;&quot;
+	}
+	ssn = ssn.replace(&quot;-&quot;,&quot;&quot;);
+	ssn = ssn.replace(&quot;-&quot;,&quot;&quot;);
+	if(ssn !=&apos;&apos;){
+		query = &quot;SELECT PersonID FROM Person WHERE &quot;
+		query += &quot;SSN=&apos;&quot; + ssn + &quot;&apos;&quot;;
+	}
+     var result = selectQueryBuilder(query);
+	return result;
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>88985732-a57e-4057-a95b-72b25498b592</id>
+        <name>getPatientPrimaryDoctor</name>
+        <revision>6</revision>
+        <lastModified>
+          <time>1631994843126</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getPatientPrimaryDoctor(personId) {
+	var query = &quot;SELECT ProviderId FROM PatientProvider WHERE PersonId=&apos;&quot; + personId + &quot;&apos;&quot;;
+     var result = selectQueryBuilder(query);
+
+	if(result.length &gt; 0){
+		query = &quot;SELECT FullName, ProviderId FROM Providers WHERE ProviderId =&apos;&quot; + result[0].ProviderId + &quot;&apos;&quot;;
+		result = selectQueryBuilder(query);		 
+		if(result.length &gt; 0){
+
+			return result;
+		}
+	}
+     
+	return [];
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>648dfc98-bfd7-4448-9caa-e2bed69796c2</id>
+        <name>getPrimaryDoctor</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142770</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getPrimaryDoctor(doctorName, patientId) {
+	var query = &quot;SELECT FullName, EmrId FROM Providers WHERE FullName=&apos;&quot; + doctorName + &quot;&apos;&quot;;
+	var provider = {};
+     var result = selectQueryBuilder(query);
+	
+	if(result.length &gt; 0){
+
+		provider.PrimaryDoctor = result[0].FullName;
+		provider.EmrId = result[0].EmrId;
+		query = &quot;SELECT ProviderId FROM PatientProvider WHERE PersonId =&apos;&quot; + patientId + &quot;&apos; AND ProviderId=&apos;&quot; + provider.EmrId + &quot;&apos;&quot;;
+		result = selectQueryBuilder(query);
+		if(result.length &gt; 0){
+			return provider;
+		}
+	}
+     
+	return [];
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>098252a6-d5db-4107-86fb-1498f5733d00</id>
+        <name>getProvider</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142309</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getProvider(fullName) {
+
+     var query = &quot;SELECT * FROM Providers WHERE FullName=&apos;&quot; + fullName + &quot;&apos;&quot;;
+     var result = selectQueryBuilder(query);
+	return result;
+
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>b73aece2-72ef-46ea-9ec8-2ebb6b7f8f4e</id>
+        <name>getProviders</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142129</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function getProviders() {
+
+     var query = &quot;SELECT * FROM Providers&quot;;
+     var result = selectQueryBuilder(query);
+	return result;
+
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>7d1d349a-e4f6-4867-b2e3-83aedd6af28c</id>
+        <name>insertQueryBuilder</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142024</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function insertQueryBuilder(data,database) {
+	var env = JSON.parse(configurationMap.get(&quot;settings&quot;));
+    var dbConn = DatabaseConnectionFactory.createDatabaseConnection(&apos;net.sourceforge.jtds.jdbc.Driver&apos;, env.Databases.default.connectionstring, env.Databases.default.user, env.Databases.default.password); 
+    try {
+	var query = &quot;&quot;;
+	var queryHead = &quot;INSERT INTO &quot;;
+		queryHead += database;
+		queryHead += &quot; (&quot;;
+	var queryValue = &quot;) VALUES (&quot;
+	var count = (Object.keys(data).length);
+	var i=0;
+	for (var key in data) {
+		if (data.hasOwnProperty(key)) {
+			i++  
+			if (i &lt; count){
+				queryHead += key + &quot;, &quot;
+				queryValue +=&quot;&apos;&quot; + data[key] + &quot;&apos;, &quot;;
+			}else{
+				queryHead += key;
+				queryValue +=&quot;&apos;&quot; + data[key] + &quot;&apos;&quot;
+			}			     		
+        	}
+	}
+	queryValue += &quot;)&quot;;
+	query = queryHead + queryValue;
+	//logger.debug(query + &quot; - Count:&quot; + count);
+	result = dbConn.executeUpdate(query);
+         dbConn.close();
+    } finally {
+        if (dbConn) {
+            dbConn.close();
+        }
+    }
+}</code>
+        </properties>
+      </codeTemplate>
+      <codeTemplate version="3.11.0">
+        <id>2e74aa6a-16e7-4730-a1d7-ca43283a5e19</id>
+        <name>selectQueryBuilder</name>
+        <revision>1</revision>
+        <lastModified>
+          <time>1631992142374</time>
+          <timezone>Etc/UTC</timezone>
+        </lastModified>
+        <contextSet>
+          <delegate>
+            <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+            <contextType>GLOBAL_UNDEPLOY</contextType>
+            <contextType>SOURCE_RECEIVER</contextType>
+            <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+            <contextType>GLOBAL_POSTPROCESSOR</contextType>
+            <contextType>DESTINATION_DISPATCHER</contextType>
+            <contextType>GLOBAL_PREPROCESSOR</contextType>
+            <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+            <contextType>GLOBAL_DEPLOY</contextType>
+          </delegate>
+        </contextSet>
+        <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+          <type>FUNCTION</type>
+          <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function selectQueryBuilder(query) {
+    try {
+
+        var env = JSON.parse(configurationMap.get(&quot;settings&quot;));
+        var dbConn = DatabaseConnectionFactory.createDatabaseConnection(&apos;net.sourceforge.jtds.jdbc.Driver&apos;, env.Databases.default.connectionstring, env.Databases.default.user, env.Databases.default.password);
+        try {
+        var result = dbConn.executeCachedQuery(query);
+        var rsmd = result.getMetaData();
+        result.next();
+        var values = [];
+        var count = rsmd.getColumnCount() + 1;
+        var field = {};
+            for (var j = 1; j &lt; count; ++j) {
+                var colomn = rsmd.getColumnName(j).toString();
+                
+                field[colomn] = result.getString(colomn);
+                values.push(field);
+
+            }      
+          return values;
+        } catch (ex) {
+            return [];           
+        }
+
+    } finally {
+        if (dbConn) {
+            dbConn.close();
+        }
+        
+    }
+}</code>
+        </properties>
+      </codeTemplate>
+    </codeTemplates>
+  </codeTemplateLibrary>
+</list>
