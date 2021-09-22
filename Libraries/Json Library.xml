@@ -1,9 +1,9 @@
 <codeTemplateLibrary version="3.11.0">
   <id>71ab01b2-c9c1-418c-82d2-d512449534b6</id>
   <name>Json Library</name>
-  <revision>2</revision>
+  <revision>4</revision>
   <lastModified>
-    <time>1631993546514</time>
+    <time>1632188074699</time>
     <timezone>Etc/UTC</timezone>
   </lastModified>
   <description></description>
@@ -11,7 +11,7 @@
   <enabledChannelIds>
     <string>4b589d39-1f0d-4985-900e-6dcb86fa5900</string>
     <string>c8664033-9b7f-4d25-a298-4cab7c5219c8</string>
-    <string>86b3733a-bbcb-4e66-8019-288a694c18ca</string>
+    <string>2319efdc-0b72-4a30-803f-9b109c43abda</string>
   </enabledChannelIds>
   <disabledChannelIds/>
   <codeTemplates>
@@ -25,11 +25,11 @@
       </lastModified>
       <contextSet>
         <delegate>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
           <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -62,21 +62,21 @@ function Diagnosis() {
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>GLOBAL_POSTPROCESSOR</contextType>
-          <contextType>CHANNEL_ATTACHMENT</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-          <contextType>GLOBAL_DEPLOY</contextType>
-          <contextType>DESTINATION_DISPATCHER</contextType>
           <contextType>GLOBAL_PREPROCESSOR</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>GLOBAL_UNDEPLOY</contextType>
-          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
-          <contextType>CHANNEL_UNDEPLOY</contextType>
           <contextType>CHANNEL_PREPROCESSOR</contextType>
-          <contextType>CHANNEL_BATCH</contextType>
-          <contextType>CHANNEL_POSTPROCESSOR</contextType>
           <contextType>CHANNEL_DEPLOY</contextType>
+          <contextType>CHANNEL_POSTPROCESSOR</contextType>
+          <contextType>CHANNEL_ATTACHMENT</contextType>
+          <contextType>GLOBAL_POSTPROCESSOR</contextType>
+          <contextType>GLOBAL_DEPLOY</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
           <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>CHANNEL_BATCH</contextType>
+          <contextType>CHANNEL_UNDEPLOY</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -127,6 +127,70 @@ function encounter() {
       </properties>
     </codeTemplate>
     <codeTemplate version="3.11.0">
+      <id>dd4a3163-8899-44ac-92c1-f0eb54174892</id>
+      <name>Observations</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632176662234</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function Observations(arg1) {
+	return {
+		&quot;PatientId&quot;:&quot;&quot;,
+		&quot;LastName&quot;:&quot;&quot;,
+		&quot;FirstName&quot;:&quot;&quot;,
+		&quot;DOB&quot;:&quot;&quot;,
+		&quot;SSN&quot;:&quot;&quot;,
+		&quot;PhoneNumber&quot;:&quot;&quot;,
+		&quot;OrderNumber&quot;:&quot;&quot;,
+		&quot;MnemonicCode&quot;:&quot;&quot;,
+		&quot;DocumentIdentifier&quot;:&quot;&quot;,
+		&quot;DocumentName&quot;:&quot;&quot;,
+		&quot;DocumentType&quot;:&quot;&quot;,
+		&quot;EmrDocumentName&quot;:&quot;&quot;,
+		&quot;EmrDocumentType&quot;:&quot;&quot;,
+		&quot;EmrDocumentId&quot;:&quot;&quot;,
+		&quot;PreferredProvider&quot;:&quot;&quot;,
+		&quot;ObservationDate&quot;:&quot;&quot;,
+		&quot;ObservationStatus&quot;:&quot;&quot;,
+		&quot;PatientType&quot;:&quot;&quot;,
+		&quot;AdmissionDate&quot;:&quot;&quot;,
+		&quot;OrderingDoctor&quot;:&quot;&quot;,
+		&quot;AttendingDoctor&quot;:&quot;&quot;,
+		&quot;ReferringDoctor&quot;:&quot;&quot;,
+		&quot;ConsultingDoctor&quot;:&quot;&quot;,
+		&quot;AdmittingDoctor&quot;:&quot;&quot;,
+		&quot;InterestedDoctor&quot;:&quot;&quot;,
+		&quot;PrimaryDoctor&quot;:&quot;&quot;,
+		&quot;PrimaryDoctorId&quot;:&quot;&quot;,
+		&quot;SignedBy&quot;:&quot;&quot;,
+		&quot;SignatureDetails&quot;:&quot;&quot;,
+		&quot;SendingFacility&quot;:&quot;&quot;,
+		&quot;EncounterId&quot;:&quot;&quot;,
+		&quot;DateProcessed&quot;:&quot;&quot;
+	}
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
       <id>ce4cd154-657a-49ce-99ab-714905d3098a</id>
       <name>Procedure</name>
       <revision>1</revision>
@@ -136,11 +200,11 @@ function encounter() {
       </lastModified>
       <contextSet>
         <delegate>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
           <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
