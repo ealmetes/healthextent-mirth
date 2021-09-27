@@ -1,16 +1,15 @@
 <codeTemplateLibrary version="3.11.0">
   <id>46f98a65-d504-4fc8-a295-7cf7b199b3c3</id>
   <name>SLQTools</name>
-  <revision>10</revision>
+  <revision>4</revision>
   <lastModified>
-    <time>1632236032773</time>
+    <time>1632773947241</time>
     <timezone>Etc/UTC</timezone>
   </lastModified>
   <description></description>
   <includeNewChannels>true</includeNewChannels>
   <enabledChannelIds>
     <string>4b589d39-1f0d-4985-900e-6dcb86fa5900</string>
-    <string>c8664033-9b7f-4d25-a298-4cab7c5219c8</string>
     <string>2319efdc-0b72-4a30-803f-9b109c43abda</string>
   </enabledChannelIds>
   <disabledChannelIds/>
@@ -18,18 +17,18 @@
     <codeTemplate version="3.11.0">
       <id>fd0179eb-6121-4d93-ac88-102f60ee0b00</id>
       <name>addObservationDetails</name>
-      <revision>3</revision>
+      <revision>1</revision>
       <lastModified>
-        <time>1632246082376</time>
+        <time>1632530386828</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -55,16 +54,16 @@ function addObservationDetails(Value, EncounterId, ObservationDate) {
       <name>addProvider</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142221</time>
+        <time>1632530387534</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -88,19 +87,19 @@ function addProvider() {
     </codeTemplate>
     <codeTemplate version="3.11.0">
       <id>88d23bbb-fca3-4b22-8faa-68458dfa27fd</id>
-      <name>checkDuplicateData</name>
-      <revision>3</revision>
+      <name>checkDuplicateEncounters</name>
+      <revision>2</revision>
       <lastModified>
-        <time>1631996259767</time>
+        <time>1632767879168</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -112,7 +111,7 @@ function addProvider() {
 	@param {String} arg1 - arg1 description
 	@return {String} return description
 */
-function checkDuplicateData(patientId, eventType, eventDate) {
+function checkDuplicateEncounters(patientId, eventType, eventDate) {
 	var query = &quot;SELECT Id FROM Encounters WHERE PatientId=&apos;&quot; + patientId + &quot;&apos; AND EventType=&apos;&quot; + eventType + &quot;&apos; AND EventDate=&apos;&quot; + eventDate + &quot;&apos;&quot;;
      var result = selectQueryBuilder(query);
 	if(result.length &gt; 0){
@@ -125,18 +124,18 @@ function checkDuplicateData(patientId, eventType, eventDate) {
     <codeTemplate version="3.11.0">
       <id>5db0b670-f283-4be9-b680-c37976442c27</id>
       <name>checkDuplicateObs</name>
-      <revision>2</revision>
+      <revision>1</revision>
       <lastModified>
-        <time>1632235346462</time>
+        <time>1632530387823</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -159,20 +158,57 @@ function checkDuplicateObs(encounterId) {
       </properties>
     </codeTemplate>
     <codeTemplate version="3.11.0">
-      <id>55b03bce-55d3-445e-8dbc-c8dcd15257bc</id>
-      <name>getConnectionstring</name>
-      <revision>1</revision>
+      <id>1b44f7a8-3aa1-4ab7-9018-0a58c2461f91</id>
+      <name>checkDuplicateProcedures</name>
+      <revision>4</revision>
       <lastModified>
-        <time>1631992141800</time>
+        <time>1632775007392</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function checkDuplicateProcedures(patientId, procedures, admissionDate) {
+	var query = &quot;SELECT Id FROM Encounters WHERE PatientId=&apos;&quot; + patientId + &quot;&apos; AND Procedures=&apos;&quot; + procedures + &quot;&apos; AND AdmissionDate=&apos;&quot; + admissionDate + &quot;&apos;&quot;;
+     var result = selectQueryBuilder(query);
+     //logger.debug(query)
+	if(result.length &gt; 0){
+		return false;
+	}
+	return true;
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>55b03bce-55d3-445e-8dbc-c8dcd15257bc</id>
+      <name>getConnectionstring</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632530387240</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -212,18 +248,18 @@ return connection.connectionstring;
     <codeTemplate version="3.11.0">
       <id>422f0efa-277e-4e60-bb37-ea7ebc03c85d</id>
       <name>getEmrDocument</name>
-      <revision>4</revision>
+      <revision>1</revision>
       <lastModified>
-        <time>1632244572018</time>
+        <time>1632530386939</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -247,16 +283,16 @@ function getEmrDocument(MnemonicCode) {
       <name>getEventTypeDescription</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142689</time>
+        <time>1632530388004</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -280,16 +316,16 @@ function getEventTypeDescription(code) {
       <name>getPatient</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992141661</time>
+        <time>1632530387044</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -313,16 +349,16 @@ function getPatient(firstName,LastName,dob,ssn) {
       <name>getPatientId</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142589</time>
+        <time>1632530387920</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -363,18 +399,18 @@ function getPatientId(firstName,lastName,dob,ssn) {
     <codeTemplate version="3.11.0">
       <id>88985732-a57e-4057-a95b-72b25498b592</id>
       <name>getPatientPrimaryDoctor</name>
-      <revision>6</revision>
+      <revision>1</revision>
       <lastModified>
-        <time>1631994843126</time>
+        <time>1632530388189</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -408,16 +444,16 @@ function getPatientPrimaryDoctor(personId) {
       <name>getPrimaryDoctor</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142770</time>
+        <time>1632530388090</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -454,16 +490,16 @@ function getPrimaryDoctor(doctorName, patientId) {
       <name>getProvider</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142309</time>
+        <time>1632530387626</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -489,16 +525,16 @@ function getProvider(fullName) {
       <name>getProviders</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142129</time>
+        <time>1632530387446</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -524,16 +560,16 @@ function getProviders() {
       <name>insertQueryBuilder</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142024</time>
+        <time>1632530387351</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
           <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
@@ -570,7 +606,7 @@ function insertQueryBuilder(data,database) {
 	}
 	queryValue += &quot;)&quot;;
 	query = queryHead + queryValue;
-	//logger.debug(query + &quot; - Count:&quot; + count);
+	//logger.debug(query);
 	result = dbConn.executeUpdate(query);
          dbConn.close();
     } finally {
@@ -586,20 +622,20 @@ function insertQueryBuilder(data,database) {
       <name>selectQueryBuilder</name>
       <revision>1</revision>
       <lastModified>
-        <time>1631992142374</time>
+        <time>1632530387714</time>
         <timezone>Etc/UTC</timezone>
       </lastModified>
       <contextSet>
         <delegate>
-          <contextType>GLOBAL_PREPROCESSOR</contextType>
-          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
-          <contextType>GLOBAL_UNDEPLOY</contextType>
-          <contextType>DESTINATION_DISPATCHER</contextType>
-          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
-          <contextType>SOURCE_RECEIVER</contextType>
           <contextType>GLOBAL_POSTPROCESSOR</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
           <contextType>GLOBAL_DEPLOY</contextType>
           <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>GLOBAL_PREPROCESSOR</contextType>
+          <contextType>GLOBAL_UNDEPLOY</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
         </delegate>
       </contextSet>
       <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">

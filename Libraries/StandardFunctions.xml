@@ -1,0 +1,771 @@
+<codeTemplateLibrary version="3.11.0">
+  <id>0f6b5e3c-4c1a-4286-8e07-1f3f3a144b00</id>
+  <name>StandardFunctions</name>
+  <revision>3</revision>
+  <lastModified>
+    <time>1632437015683</time>
+    <timezone>Etc/UTC</timezone>
+  </lastModified>
+  <description></description>
+  <includeNewChannels>true</includeNewChannels>
+  <enabledChannelIds>
+    <string>c8664033-9b7f-4d25-a298-4cab7c5219c8</string>
+    <string>2319efdc-0b72-4a30-803f-9b109c43abda</string>
+  </enabledChannelIds>
+  <disabledChannelIds/>
+  <codeTemplates>
+    <codeTemplate version="3.11.0">
+      <id>52c78843-945a-4a0a-b6df-82c09226b67b</id>
+      <name>address</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320935</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function creates a Json odject
+
+	@param {String} address1 - address1 form HL7 segment
+	@param {String} address2 - address2 form HL7 segment
+	@param {String} city - city form HL7 segment
+	@param {String} state - state form HL7 segment
+	@param {String} country - country form HL7 segment
+	@param {String} zip - zip form HL7 segment
+	@return {String} return Json object
+*/
+function address(address1, address2, city, state, country, zip) {
+    const obj = {
+        &quot;address1&quot;: address1,
+        &quot;address2&quot;: address2,
+        &quot;city&quot;: city,
+        &quot;state&quot;: state,
+        &quot;country&quot;: country,
+        &quot;zip&quot;: zip
+    };
+    return obj;
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>d5a8b25f-fe9a-4dff-8189-be5f0b3db532</id>
+      <name>calculatePersonAge</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320995</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function format the Patient date of Birth as yyyy/MM/dd and return person age
+
+	@param {String} dateOfBirth - dateOfBirth form HL7 segment
+	@return {String} return Age
+*/
+function calculatePersonAge(dateOfBirth) {
+    /* Format the Patient date of Birth as yyyy/MM/dd
+    calling function method global variable and format the date input value:
+    The date of birth must be in a 8 digits value same as HL7 format
+    */
+
+    dateOfBirth = DateUtil.convertDate(&quot;yyyyMMdd&quot;, &quot;yyyy/MM/dd&quot;, dateOfBirth); // Format date of birth
+
+    const dob = new Date(dateOfBirth);
+    // Capture the month patient born
+    const pMonth = dob.getMonth();
+    // Set the day of the month patient born
+    const pDate = dob.getDate();
+    // what year the patient born?
+    const pYear = dob.getFullYear();
+
+    const today = new Date();
+    const sys_Date = today.getDate();
+    const sys_Month = today.getMonth();
+    const sys_Year = today.getFullYear();
+
+    // Now, subtract the system and Person Dates
+
+    let age = sys_Year - pYear;
+    //var theMonth = sys_Month - Pmonth;
+    //var theDate = sys_Date - Pdate;
+    //return Age;
+    try {
+        if (sys_Month &lt; pMonth || (sys_Month == pMonth &amp;&amp; sys_Date &lt; pDate)) age--;
+        return age;
+    } catch (ex) {
+        // Log the error for human readable text
+        ///logger.debug(&quot;Error occur &quot; + ex + &quot; &quot; + &quot;&apos;(&quot; + &quot;at&quot; + Date().now + &quot;&apos;)&quot;);
+    }
+
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>bee63ca6-481e-4f8e-98c9-48e2a2505439</id>
+      <name>contacts</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320365</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function creates a Josn object from Json message (contact object)
+
+	@param {String} system - system from JSON message
+	@param {String} use - use from JSON message
+	@param {String} value - value from JSON message
+	@return {String} return Json object
+*/
+function contacts(system, use, value) {
+    const contact = {
+        &quot;system&quot;: system,
+        &quot;use&quot;: use,
+        &quot;value&quot;: value
+    };
+    return contact;
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>92ab78a8-f08e-4c21-a468-ce83bce6740f</id>
+      <name>formatDate</name>
+      <revision>9</revision>
+      <lastModified>
+        <time>1632439770250</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function format the Patient date of Birth string as yyyy/MM/dd
+
+	@param {String} str - dob from Json object
+	@return {String} return dob s yyyy/MM/dd
+*/
+
+function formatDate(str) {
+
+    var date = &quot;&quot;;
+    if (str.length &gt; 7) {
+      const year  = str.substr(0, 4),
+            day   = str.substr(6, 2),
+            month = str.substr(4, 2);
+		  date = month + &quot;/&quot; + day + &quot;/&quot; + year 
+		  if (str.length &gt; 10) {
+		  	hh = str.substr(8, 2);
+            	mm = str.substr(10, 2);
+            	date +=  &quot; &quot; + hh + &quot;:&quot; + mm;
+		  }
+            return date;
+    }
+  return &quot;&quot;;
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>17dffdb2-e4f3-4464-b867-93a2d4110266</id>
+      <name>formatDOB</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320151</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function format the Patient date of Birth string as yyyy/MM/dd
+
+	@param {String} str - dob from Json object
+	@return {String} return dob s yyyy/MM/dd
+*/
+function formatDOB(str) {
+    let dob = &quot;&quot;;
+    if (str.length &gt; 7) {
+        const y = str.substr(0, 4),
+            d = str.substr(6, 2),
+            m = str.substr(4, 2);
+        const D = new Date(y, m, d);
+        dob = m + &quot;/&quot; + d + &quot;/&quot; + y;
+    }
+
+    return dob;
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>3824f1b3-9bb5-46df-aac7-a6fcd0eceb80</id>
+      <name>formatUsPhone</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436321131</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function format the Patient phone
+
+	@param {String} phone - phone from Json object
+	@return {String} return phone as 999-999-9999
+*/
+function formatUsPhone(phone) {
+
+    const phoneTest = new RegExp(/^((\+1)|1)? ?\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})( ?(ext\.? ?|x)(\d*))?$/);
+
+    phone = phone.trim();
+    const results = phoneTest.exec(phone);
+    if (isNotEmpty(results) &amp;&amp; results.length &gt; 8) {
+
+        return results[3] + &quot;-&quot; + results[4] + &quot;-&quot; + results[5];
+
+    } else {
+        return phone;
+    }
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>422b99c7-403e-408f-8074-a8fae43534e2</id>
+      <name>getAgeFromFormattedDate</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320616</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function format the Patient date of Birth as yyyy/MM/dd and return person age
+
+	@param {String} dateOfBirth - dateOfBirth form HL7 segment
+	@return {String} return Age
+*/
+function getAgeFromFormattedDate(dateOfBirth) {
+    /* Format the Patient date of Birth as yyyy/MM/dd
+    calling function method global variable and format the date input value:
+    The date of birth must be in a 8 digits value same as HL7 format
+    */
+
+    //dateOfBirth = DateUtil.convertDate(&quot;yyyyMMdd&quot;, &quot;yyyy/MM/dd&quot;, dateOfBirth); // Format date of birth
+    if (isEmpty(dateOfBirth)) {
+        return
+    }
+    const dob = new Date(dateOfBirth);
+    // Capture the month patient born
+    const pMonth = dob.getMonth();
+    // Set the day of the month patient born
+    const pDate = dob.getDate();
+    // what year the patient born?
+    const pYear = dob.getFullYear();
+
+    const today = new Date();
+    const sys_date = today.getDate();
+    const sys_Month = today.getMonth();
+    const sys_Year = today.getFullYear();
+
+    // Now, subtract the system and Person Dates
+
+    const age = sys_Year - pYear;
+    //var theMonth = sys_Month - Pmonth;
+    //var theDate = sys_Date - Pdate;
+    //return Age;
+    try {
+        if (sys_Month &lt; pMonth || (sys_Month == pMonth &amp;&amp; sys_Date &lt; pDate)) age--;
+        return age.toString().split(&apos;.&apos;)[0];
+    } catch (ex) {
+        // Log the error for human readable text
+        ///logger.debug(&quot;Error occur &quot; + ex + &quot; &quot; + &quot;&apos;(&quot; + &quot;at&quot; + Date().now + &quot;&apos;)&quot;);
+    }
+
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>2c545333-4706-4b9b-a8b9-19febb53e969</id>
+      <name>getInsuredJsonObject</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320703</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function creates a Josn object from Json message (insured object)
+
+	@return {String} return Json object
+*/
+function getInsuredJsonObject() {
+    // TODO: Enter code here
+    return obj = {
+        &quot;name&quot;: &apos;&apos;,
+        &quot;relationship&quot;: &apos;&apos;,
+        &quot;firstname&quot;: &apos;&apos;,
+        &quot;middlename&quot;: &apos;&apos;,
+        &quot;lastname&quot;: &apos;&apos;,
+        &quot;title&quot;: &apos;&apos;,
+        &quot;DOB&quot;: &apos;&apos;,
+        &quot;sex&quot;: &apos;&apos;,
+        &quot;address&quot;: &apos;&apos;,
+        &quot;contacts&quot;: &apos;&apos;
+    };
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>62b753fa-1362-4887-ae6d-79193f80aeed</id>
+      <name>getMetaDataJsonObject</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320770</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function generate a Json object (meta data)
+
+	@param {String} fileName - name of the file going into meta data Json object
+	@param {String} msgControlID - msgControlID from HL7 segment
+	@param {String} port - port number going into meta data json object
+	@return {String} return meta data Json object
+*/
+function getMetaDataJsonObject(fileName, msgControlID, port) {
+	
+    return meta = {
+        &quot;document_type&quot;: &quot;ORM_Update&quot;,
+        &quot;base64&quot;: &quot;&quot;,
+        &quot;msgControlID&quot;: msgControlID,
+        &quot;filename&quot;: fileName,
+        &quot;port&quot;: port,
+        &quot;ip&quot;: &quot;&quot;,
+        &quot;status&quot;: &quot;Received&quot;
+    };
+
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>b751deaa-b05f-4faa-8474-fdb8ec351038</id>
+      <name>getORUAgeFromFormattedDate</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320535</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This function get date Of Birth from HL7 segment and return patient age
+	@param {String} dateOfBirth - dateOfBirth form HL7 segment
+	@return {String} return Age
+*/
+function getORUAgeFromFormattedDate(dateOfBirth) {
+    /* Format the Patient date of Birth as yyyy/MM/dd
+    calling function method global variable and format the date input value:
+    The date of birth must be in a 8 digits value same as HL7 format
+    */
+
+    //dateOfBirth = DateUtil.convertDate(&quot;yyyyMMdd&quot;, &quot;yyyy/MM/dd&quot;, dateOfBirth); // Format date of birth
+    if (isNotEmpty(dateOfBirth)) {
+        return
+    }
+    const dob = new Date(dateOfBirth);
+    // Capture the month patient born
+    const pMonth = dob.getMonth();
+    // Set the day of the month patient born
+    const pDate = dob.getDate();
+    // what year the patient born?
+    const pYear = dob.getFullYear();
+
+    const today = new Date();
+    const sys_Date = today.getDate();
+    const sys_Month = today.getMonth();
+    const sys_Year = today.getFullYear();
+
+    // Now, subtract the system and Person Dates
+
+    const age = sys_Year - pYear;
+    const theMonth = sys_Month - pMonth;
+    const theDate = sys_Date - pDate;
+    //return Age;
+    try {
+        if (sys_Month &lt; pMonth || (sys_Month == pMonth &amp;&amp; sys_Date &lt; pDate)) age--;
+        return age; //.toString().split(&apos;.&apos;)[0];
+    } catch (ex) {
+        // Log the error for human readable text
+        return ex;
+    }
+
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>296bce30-8f66-4f30-9e25-3f5662b934e2</id>
+      <name>is_array</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436321194</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This fucntion check if data from HL7 segment is an array
+
+	@param {String} data - HL7 segment
+	@return {String} return true/false
+*/
+function is_array(data) {
+    if (data.length &gt; 1) {
+        return true;
+    }
+    return false
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>07659113-eda2-486c-8df0-5051f5c6df10</id>
+      <name>isEmail</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320234</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This fucntion check if data from HL7 segment is an email
+
+	@param {String} str - value from HL7 segment
+	@return {String} return true/false
+*/
+function isEmail(str) {
+
+    const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (pattern.test(str) == true) {
+        return true
+    }
+    return false;
+};</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>f59035fe-8977-40aa-97a0-b520ae6ec87a</id>
+      <name>isEmpty</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320289</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>function isEmpty(data) {
+    if(typeof(data) === &apos;object&apos;){
+        if(JSON.stringify(data) === &apos;{}&apos; || JSON.stringify(data) === &apos;[]&apos;){
+            return true;
+        }else if(!data){
+            return true;
+        }
+        return false;
+    }else if(typeof(data) === &apos;string&apos;){
+        if(!data.trim()){
+            return true;
+        }
+        return false;
+    }else if(typeof(data) === &apos;undefined&apos;){
+        return true;
+    }else{
+        return false;
+    }
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>d88b27c7-b8d3-4295-967b-8c7586cf7421</id>
+      <name>isNotEmpty</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320823</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>function isNotEmpty(data) {
+	return !isEmpty(data);
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>0ae75dda-24e6-43d7-8fba-1da280f8b1e8</id>
+      <name>isNumber</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436321061</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	This fucntion check if data from HL7 segment is a number
+
+	@param {String} data - from HL7 segment
+	@return {String} return isNumber/Null
+*/
+function isNumber(str) {
+
+    pattern = /^\d+$/;
+    if (pattern.test(str) == true) {
+        return &quot;isNumber&quot;
+    }
+    return null;
+};</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>1958e688-6a5d-41fc-bece-da29e0532470</id>
+      <name>sentenceCase</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320876</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	MThis function set a sentences to proper case
+
+	@param {String} str - string from HL7 segment
+	@return {String} return proper case
+*/
+function sentenceCase(str) {
+    if (isEmpty(str))
+        return &quot;&quot;;
+    else
+        str = str.toString();
+    str = str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+
+    return str;
+}</code>
+      </properties>
+    </codeTemplate>
+    <codeTemplate version="3.11.0">
+      <id>c49ec4c1-31ab-4d34-9df2-5626f0f432ec</id>
+      <name>validateMessageStatus</name>
+      <revision>1</revision>
+      <lastModified>
+        <time>1632436320473</time>
+        <timezone>Etc/UTC</timezone>
+      </lastModified>
+      <contextSet>
+        <delegate>
+          <contextType>DESTINATION_FILTER_TRANSFORMER</contextType>
+          <contextType>DESTINATION_RESPONSE_TRANSFORMER</contextType>
+          <contextType>DESTINATION_DISPATCHER</contextType>
+          <contextType>SOURCE_RECEIVER</contextType>
+          <contextType>SOURCE_FILTER_TRANSFORMER</contextType>
+        </delegate>
+      </contextSet>
+      <properties class="com.mirth.connect.model.codetemplates.BasicCodeTemplateProperties">
+        <type>FUNCTION</type>
+        <code>/**
+	Modify the description here. Modify the function name and parameters as needed. One function per
+	template is recommended; create a new code template for each new function.
+
+	@param {String} arg1 - arg1 description
+	@return {String} return description
+*/
+function validateMessageStatus(ErrSegment,ErrPatient,ErrorReferringDr,ErrMessageIDDateTime,ErrExam) {
+    // TODO: Enter code here  
+    	    let errResult = &quot;&quot;;
+
+
+        //logger.debug(&quot;ErrSegment : &quot; + $(&apos;ErrSegment&apos;))
+        //logger.debug(&quot;ErrPatient : &quot; + $(&apos;ErrPatient&apos;))
+        //logger.debug(&quot;ErrorReferringDr : &quot; + $(&apos;ErrorReferringDr&apos;))
+        //logger.debug(&quot;ErrMessageIDDateTime : &quot; + $(&apos;ErrMessageIDDateTime&apos;))
+        //logger.debug(&quot;ErrExam : &quot; + $(&apos;ErrExam&apos;))
+
+        if (isNotEmpty($(&apos;ErrSegment&apos;))) {
+            errResult += $(&apos;ErrSegment&apos;)
+        }
+        if (isNotEmpty($(&apos;ErrPatient&apos;))) {
+            if (isNotEmpty(errResult)) {
+                errResult += &quot;; &quot;;
+            }
+            errResult += $(&apos;ErrPatient&apos;)
+        }
+        if (isNotEmpty($(&apos;ErrorReferringDr&apos;))) {
+            if (isNotEmpty(errResult)) {
+                errResult += &quot;; &quot;;
+            }
+            errResult += $(&apos;ErrorReferringDr&apos;)
+        }
+        if (isNotEmpty($(&apos;ErrMessageIDDateTime&apos;))) {
+            if (isNotEmpty(errResult)) {
+                errResult += &quot;; &quot;;
+            }
+            errResult += $(&apos;ErrMessageIDDateTime&apos;)
+        }
+        if (isNotEmpty($(&apos;ErrExam&apos;))) {
+            if (isNotEmpty(errResult)) {
+                errResult += &quot;; &quot;;
+            }
+            errResult += $(&apos;ErrExam&apos;)
+        }
+    return errResult
+}</code>
+      </properties>
+    </codeTemplate>
+  </codeTemplates>
+</codeTemplateLibrary>

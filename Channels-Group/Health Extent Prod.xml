@@ -1,9 +1,9 @@
 <channelGroup version="3.11.0">
   <id>ee74fc3e-49ac-4d0c-81e1-85d484fcb2b8</id>
   <name>Health Extent Prod</name>
-  <revision>2</revision>
+  <revision>1</revision>
   <lastModified>
-    <time>1632172196612</time>
+    <time>1632530218714</time>
     <timezone>Etc/UTC</timezone>
   </lastModified>
   <description></description>
@@ -13,39 +13,12 @@
       <nextMetaDataId>16</nextMetaDataId>
       <name>Encounter Feed</name>
       <description></description>
-      <revision>22</revision>
+      <revision>20</revision>
       <sourceConnector version="3.11.0">
         <metaDataId>0</metaDataId>
         <name>sourceConnector</name>
-        <properties class="com.mirth.connect.connectors.file.FileReceiverProperties" version="3.11.0">
+        <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="3.11.0">
           <pluginProperties/>
-          <pollConnectorProperties version="3.11.0">
-            <pollingType>INTERVAL</pollingType>
-            <pollOnStart>false</pollOnStart>
-            <pollingFrequency>5000</pollingFrequency>
-            <pollingHour>0</pollingHour>
-            <pollingMinute>0</pollingMinute>
-            <cronJobs/>
-            <pollConnectorPropertiesAdvanced>
-              <weekly>true</weekly>
-              <inactiveDays>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-                <boolean>false</boolean>
-              </inactiveDays>
-              <dayOfMonth>1</dayOfMonth>
-              <allDay>true</allDay>
-              <startingHour>8</startingHour>
-              <startingMinute>0</startingMinute>
-              <endingHour>17</endingHour>
-              <endingMinute>0</endingMinute>
-            </pollConnectorPropertiesAdvanced>
-          </pollConnectorProperties>
           <sourceConnectorProperties version="3.11.0">
             <responseVariable>None</responseVariable>
             <respondAfterProcessing>true</respondAfterProcessing>
@@ -60,34 +33,6 @@
             </resourceIds>
             <queueBufferSize>1000</queueBufferSize>
           </sourceConnectorProperties>
-          <scheme>FILE</scheme>
-          <host>root@b74b17d7221f:/tmp/</host>
-          <fileFilter>*</fileFilter>
-          <regex>false</regex>
-          <directoryRecursion>false</directoryRecursion>
-          <ignoreDot>true</ignoreDot>
-          <anonymous>true</anonymous>
-          <username>anonymous</username>
-          <password>anonymous</password>
-          <timeout>10000</timeout>
-          <secure>true</secure>
-          <passive>true</passive>
-          <validateConnection>true</validateConnection>
-          <afterProcessingAction>NONE</afterProcessingAction>
-          <moveToDirectory></moveToDirectory>
-          <moveToFileName></moveToFileName>
-          <errorReadingAction>NONE</errorReadingAction>
-          <errorResponseAction>AFTER_PROCESSING</errorResponseAction>
-          <errorMoveToDirectory></errorMoveToDirectory>
-          <errorMoveToFileName></errorMoveToFileName>
-          <checkFileAge>true</checkFileAge>
-          <fileAge>1000</fileAge>
-          <fileSizeMinimum>0</fileSizeMinimum>
-          <fileSizeMaximum></fileSizeMaximum>
-          <ignoreFileSizeMaximum>true</ignoreFileSizeMaximum>
-          <sortBy>date</sortBy>
-          <binary>false</binary>
-          <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
         </properties>
         <transformer version="3.11.0">
           <elements>
@@ -238,7 +183,7 @@
         <filter version="3.11.0">
           <elements/>
         </filter>
-        <transportName>File Reader</transportName>
+        <transportName>Channel Reader</transportName>
         <mode>SOURCE</mode>
         <enabled>true</enabled>
         <waitForPrevious>true</waitForPrevious>
@@ -503,7 +448,7 @@ if (Person.length &gt; 0) {
                 <sequenceNumber>0</sequenceNumber>
                 <enabled>true</enabled>
                 <script>if ($(&apos;PatientId&apos;).length() &gt; 0) {
-	return checkDuplicateData($(&apos;PatientId&apos;), msg[&apos;EVN&apos;][&apos;EVN.1&apos;][&apos;EVN.1.1&apos;].toString(),msg[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;].toString());
+	return checkDuplicateEncounters($(&apos;PatientId&apos;), msg[&apos;EVN&apos;][&apos;EVN.1&apos;][&apos;EVN.1.1&apos;].toString(),msg[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;].toString());
 }else{
 	return false;
 }</script>
@@ -2126,7 +2071,7 @@ var count = getArrayOrXmlLength(msg[&apos;IN1&apos;].toString());
 for (var i = 0; i &lt; count; i++) {
 	if(!!msg[&apos;IN1&apos;][i]){
 		InsuranceName = msg[&apos;IN1&apos;][i][&apos;IN1.4&apos;][&apos;IN1.4.1&apos;].toString();
-		InsuranceType = msg[&apos;IN1&apos;][i][&apos;IN1.15&apos;][&apos;IN1.15.1&apos;].toString();
+		InsuranceType = msg[&apos;IN1&apos;][i][&apos;IN1.15&apos;][&apos;IN1.15.1&apos;].toString()? &quot;&quot;:msg[&apos;IN1&apos;][&apos;IN1.2&apos;][&apos;IN1.2.1&apos;].toString();
 		InsurancePolicyNumber = msg[&apos;IN1&apos;][i][&apos;IN1.36&apos;][&apos;IN1.36.1&apos;].toString();		
 	}
 }
@@ -2442,19 +2387,6 @@ while(i &lt; counter){
 	}
 	i++
 }
-//for (var i = 0; i &lt; getArrayOrXmlLength(msg[&apos;PR1&apos;].toString()); i++) {
-//	if(!!msg[&apos;PR1&apos;][i]){
-//		var procedure = new Procedure();
-//		procedure.id = msg[&apos;PR1&apos;][i][&apos;PR1.1&apos;][&apos;PR1.1.1&apos;].toString();
-//		procedure.code =msg[&apos;PR1&apos;][i][&apos;PR1.3&apos;][&apos;PR1.3.1&apos;].toString();
-//		procedure.description =msg[&apos;PR1&apos;][i][&apos;PR1.4&apos;][&apos;PR1.4.1&apos;].toString();
-//		procedure.dateTime =msg[&apos;PR1&apos;][i][&apos;PR1.5&apos;][&apos;PR1.5.1&apos;].toString();
-//		procedure.surgeon =msg[&apos;PR1&apos;][i][&apos;PR1.11&apos;][&apos;PR1.11.1&apos;].toString();
-//
-//		
-//		proc.push(procedure);
-//	}	
-//}
 
 channelMap.put(&apos;Procedure&apos;, proc);</script>
               </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
@@ -2617,8 +2549,14 @@ enc.InsuranceName = $(&apos;InsuranceName&apos;);
 enc.InsuranceType = $(&apos;InsuranceType&apos;);
 enc.InsurancePolicyNumber = $(&apos;InsurancePolicyNumber&apos;);
 enc.EventType = msg[&apos;EVN&apos;][&apos;EVN.1&apos;][&apos;EVN.1.1&apos;].toString();
-enc.EventDate = msg[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;].toString();
-enc.AdmissionDate = msg[&apos;PV1&apos;][&apos;PV1.44&apos;][&apos;PV1.44.1&apos;].toString()
+var EventDate = formatDate(msg[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;].toString())
+if(!!EventDate){
+	enc.EventDate = EventDate;
+}
+var AdmissionDate = formatDate(msg[&apos;PV1&apos;][&apos;PV1.44&apos;][&apos;PV1.44.1&apos;].toString())
+if(!!AdmissionDate){
+	enc.AdmissionDate = AdmissionDate;
+}
 enc.AdmissionType = msg[&apos;PV1&apos;][&apos;PV1.4&apos;][&apos;PV1.4.1&apos;].toString()
 enc.AttendingDoctor = $(&apos;AttendingDoctor&apos;);
 enc.ReferringDoctor = $(&apos;ReferringDoctor&apos;);
@@ -2627,11 +2565,17 @@ enc.AdmittingDoctor = $(&apos;AdmittingDoctor&apos;);
 enc.PrimaryDoctor = $(&apos;PrimaryDoctor&apos;);
 enc.PrimaryDoctorId = $(&apos;PrimaryDoctorId&apos;);
 enc.DischargeDisposition = msg[&apos;PV1&apos;][&apos;PV1.36&apos;][&apos;PV1.36.1&apos;].toString();
-enc.DischargeDate = msg[&apos;PV1&apos;][&apos;PV1.45&apos;][&apos;PV1.45.1&apos;].toString();
+var DischargeDate = formatDate(msg[&apos;PV1&apos;][&apos;PV1.45&apos;][&apos;PV1.45.1&apos;].toString())
+if(!!DischargeDate){
+	enc.DischargeDate = DischargeDate;
+}
 enc.SendingFacility = msg[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.1&apos;].toString();
 enc.ServicingFacility = msg[&apos;PV1&apos;][&apos;PV1.39&apos;][&apos;PV1.39.1&apos;].toString();
 enc.EncounterID = msg[&apos;MSH&apos;][&apos;MSH.10&apos;][&apos;MSH.10.1&apos;].toString();
-enc.DateProcessed = msg[&apos;MSH&apos;][&apos;MSH.7&apos;][&apos;MSH.7.1&apos;].toString();
+var DateProcessed = formatDate(msg[&apos;MSH&apos;][&apos;MSH.7&apos;][&apos;MSH.7.1&apos;].toString())
+if(!!DateProcessed){
+	enc.DateProcessed = DateProcessed;
+}
 enc.Diagnosis = &quot;&quot;;
 enc.Procedures = &quot;&quot;;
 if($(&apos;Diagnosis&apos;).length&gt;1){
@@ -2819,10 +2763,13 @@ return enc;</script>
                 <sequenceNumber>0</sequenceNumber>
                 <enabled>true</enabled>
                 <script>var des=responseMap.get(&apos;Set Patient Validation&apos;).getStatus();
+var val = false;
+
 if (des == &apos;SENT&apos;) {
-    return true;
+    val =  true;
 }
-return false;</script>
+
+return val ;</script>
               </com.mirth.connect.plugins.javascriptrule.JavaScriptRule>
             </elements>
           </filter>
@@ -2865,7 +2812,7 @@ insertQueryBuilder(enc,&quot;Encounters&quot;);
           </properties>
           <transformer version="3.11.0">
             <elements/>
-            <inboundTemplate encoding="base64"></inboundTemplate>
+            <inboundTemplate encoding="base64">TVNIfF5+XCZ8fENPQ0ZXfHx8MjAyMTAyMDkyMjI0fHxBRFReQTA4fEZXR1RBRE0uMS4yMjAxMDQ0NXxQfDIuMg1FVk58QTA4fDIwMjEwMjA5MjIyNHx8fFBIWVNUT0FVXlNUT0tFU15BVVNUSU5eQw1QSUR8MXx8RjAwMDc1NDg2NHxGNTU5NTQ1fENPQVRTXkpBTUVTXlR8fDE5NTcwMTEyfE18fFd8NzIxNCBCUklOS0xFWSBTVF5eTkFWQVJSRV5GTF4zMjU2Nl5VU0FeXl5TQU5UQVJPU0F8fCg4NTApNTQ5LTY2NTl8KDk5OSk5OTktOTk5OXxFTkd8TXxDT0NGV3xGMDA3MzE4MDEyOTJ8MjYyLTMxLTc5NjQNTksxfDF8Q09BVFNeTUFSWXxTUHw3MjE0IEJSSU5LTEVZIFNUXl5OQVZBUlJFXkZMXjMyNTY2XlVTQV5eXlNBTlRBUk9TQXwoODUwKTU1NC0xOTc3DVBWMXwxfEl8Ri4zTl5GLjM2NV5BfFVSfHx8R0lMU1ReR2lsbW9yZV5TdGVwaGVuXlJeXl5NRHwuU0VMRl5SRUZFUlJFRF5TRUxGfFBFUkJSXlBlcmV6XkJyaWFuXkZeXl5NRHxNRUR8fHx8VFJGfHxOfEdJTFNUXkdpbG1vcmVeU3RlcGhlbl5SXl5eTUR8SU58fDA2fHx8fHx8fHx8fHx8fHx8fHx8fENPQ0ZXfEhZUE9YSUMgUkVQSVRPUlkgRkFJTFVSRXxBRE18fHwyMDIxMDIwOTIxMTl8fHx8fHx8fC5TRUxGXlJFRkVSUkVEXlNFTEZ+SklNREVeSmltZW5lel5EZXJla15eXl5NRF5eXl5eXlhYfllVSExVXll1aGljb15MdWtlXlNpbW9uIE9saXZlcmFeXl5NRF5eXl5eXlhYfg1QVjJ8MXxNRA1ERzF8MXxJMTB8Sjk2LjkxfFJFU1BJUkFUT1JZIEZBSUxVUkUsIFVOU1BFQ0lGSUVEIFdJVEggSFl8fEF8fHx8fHx8fHx8fHxODUdUMXwxfHxDT0FUU15KQU1FU15UfHw3MjE0IEJSSU5LTEVZIFNUXl5OQVZBUlJFXkZMXjMyNTY2XlVTQV5eXlNBTlRBUk9TQXwoODUwKTU0OS02NjU5fHwxOTU3MDExMnxNfHxTQXwyNjItMzEtNzk2NHx8fFVOSVRFRCBTVEFURVMgQUlSIEZPUkNFfC5eXkZJTEwgSU4gRFVUWSBTVEFUSU9OIV5YWF4wMDAwMHwoOTk5KTk5OS05OTk5fHx8Rg1JTjF8MXxUUklTVER8fFRSSUNBUkUgRUFTVHxQTyBCT1ggNzk4MTI2MjMxNzk2NF5eTUFESVNPTl5XSV41MzcwNy03OTgxXlVTQXx8KDgwMCk0NDQtNTQ0NXw5OTk5OXxUUklDQVJFfHx8MjAyMTAyMDl8fHx8Q09BVFNeSkFNRVNeVHwwMXwxOTU3MDExMnx8fHx8fHx8fHx8fHx8fHx8fDI2MjMxNzk2NHx8fHx8fHxNDQ==</inboundTemplate>
             <outboundTemplate encoding="base64"></outboundTemplate>
             <inboundDataType>HL7V2</inboundDataType>
             <outboundDataType>HL7V2</outboundDataType>
@@ -3038,10 +2985,16 @@ insertQueryBuilder(enc,&quot;Encounters&quot;);
                 <sequenceNumber>0</sequenceNumber>
                 <enabled>true</enabled>
                 <script>var des=responseMap.get(&apos;Set Patient Validation&apos;).getStatus();
+var val = false;
 if (des == &apos;SENT&apos;) {
-    return true;
+    val = true;
 }
-return false;</script>
+if(val == true){
+	var eventDate = formatDate(msg[&apos;PV1&apos;][&apos;PV1.44&apos;][&apos;PV1.44.1&apos;].toString());
+	val = checkDuplicateProcedures($(&apos;PatientId&apos;), JSON.stringify($(&apos;Procedure&apos;)), eventDate);
+}
+
+return val;</script>
               </com.mirth.connect.plugins.javascriptrule.JavaScriptRule>
             </elements>
           </filter>
@@ -3098,7 +3051,7 @@ return;</undeployScript>
         <metadata>
           <enabled>true</enabled>
           <lastModified>
-            <time>1632188277264</time>
+            <time>1632775140521</time>
             <timezone>America/Bogota</timezone>
           </lastModified>
           <pruningSettings>
@@ -3112,7 +3065,7 @@ return;</undeployScript>
       <nextMetaDataId>18</nextMetaDataId>
       <name>Observations Feed</name>
       <description></description>
-      <revision>43</revision>
+      <revision>1</revision>
       <sourceConnector version="3.11.0">
         <metaDataId>0</metaDataId>
         <name>sourceConnector</name>
